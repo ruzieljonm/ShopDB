@@ -49,17 +49,17 @@ public class UserController {
     @RequestMapping("/signupuser")
     public String signupUser(HttpServletRequest request, Model model, HttpSession session) {
 
-        if(!session.isNew()){
-            if(session.getAttribute("usertype").toString().equals("seller")) {
-                ArrayList<Product> items = productService.findAllByProductsellerid(Integer.parseInt(session.getAttribute("userid").toString()));
-                model.addAttribute("items", items);
-                return "HomepageSeller";
-            }else{
-                ArrayList<Product> items = productService.findAll();
-                model.addAttribute("items", items);
-                return "Shop";
-            }
-        }else {
+//        if(!session.isNew()){
+//            if(session.getAttribute("usertype").toString().equals("seller")) {
+//                ArrayList<Product> items = productService.findAllByProductsellerid(Integer.parseInt(session.getAttribute("userid").toString()));
+//                model.addAttribute("items", items);
+//                return "HomepageSeller";
+//            }else{
+//                ArrayList<Product> items = productService.findAll();
+//                model.addAttribute("items", items);
+//                return "Shop";
+//            }
+//        }else {
 
             User newuser = new User();
             newuser.setFname(request.getParameter("fname"));
@@ -93,7 +93,7 @@ public class UserController {
                 model.addAttribute("items", items);
                 return "HomepageSeller";
             }
-        }
+//        }
     }
 
     @RequestMapping("/signin")
@@ -165,6 +165,8 @@ public class UserController {
     @RequestMapping("/signout")
     public String signOut(HttpSession session){
         session.invalidate();
+        productController.selectedItems=null;
+
         return "LoginPage";
 
     }

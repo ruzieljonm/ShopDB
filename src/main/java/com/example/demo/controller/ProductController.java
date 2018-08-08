@@ -79,11 +79,16 @@ public class ProductController {
 
     public int computeTotal(ArrayList<Product> selectedItems){
         int total=0;
+        if(selectedItems.size()==0){
+            return 0;
+        }else{
+            for (int i = 0; i<selectedItems.size(); i++)
+                total+=Integer.parseInt(selectedItems.get(i).getProductprice());
 
-        for (int i = 0; i<selectedItems.size(); i++)
-            total+=Integer.parseInt(selectedItems.get(i).getProductprice());
+            return total;
+        }
 
-        return total;
+
     }
 
     @RequestMapping("/shop")
@@ -137,16 +142,19 @@ public class ProductController {
         String cancelitem = request.getParameter("cancelitem");
 
         int id = Integer.parseInt(cancelitem);
-            for (int i = 0; i < selectedItems.size(); i++) {
-                if(id == selectedItems.get(i).getProductid()){
+        for (int i = 0; i < selectedItems.size(); i++) {
+            if(id == selectedItems.get(i).getProductid()){
                     selectedItems.remove(i);
-                }
+                break;
             }
+        }
 
 
         model.addAttribute("selected", selectedItems);
         ArrayList<Product> itemlist= productService.findAll();
         model.addAttribute("items", itemlist);
+        int total = computeTotal(selectedItems);
+        model.addAttribute("total", total);
         return "Shop";
     }
 
