@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="shop.css">
+    <script src="shop.js"></script>
+</head>
+<body>
+<div class="wrap cf">
+    <h1 class="projTitle">IMO<span>-Mama</span> Shopping E-Store</h1>
+    <form action="/addproduct" method="post">
+        <input type="text" name="prodname"  placeholder="Product Name" required ><br>
+        <input type="text" name="prodprice"  placeholder="Product Price" required ><br>
+        <button type="submit" >Add Product</button>
+    </form>
+
+
+            <div class="cart">
+
+                <ul class="cartWrap">
+                    <li class="items odd" th:each="item : ${items}">
+                        <form method="post" action="/deleteitem">
+                            <div class="infoWrap">
+                                <div class="cartSection">
+                                    <input type="hidden" name="item" th:value="${item.productid}">
+                                    <h3 th:text="${item.productname}"></h3>
+                                    <p class="stockStatus"> In Stock</p>
+                                </div>
+                                <div class="prodTotal cartSection">
+                                    <P>₱ </P><p th:text="${item.productprice}"></p>
+                                </div>
+                                <div class="cartSection removeWrap">
+                                    <button type="submit" class="remove" style="float: right;"> Delete Item </button>
+                                </div>
+                            </div>
+                        </form>
+                    </li>
+                </ul>
+
+            </div>
+
+
+
+
+        </div>
+
+
+
+
+
+<br>
+
+<form action="/signout" method="post">
+    <button type="submit">Sign Out</button>
+</form>
+
+</body>
+</html>

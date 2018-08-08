@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="shop.css">
+    <script src="shop.js"></script>
+</head>
+<body>
+
+<div class="wrap cf">
+    <h1 class="projTitle">IMO<span>-Mama</span> Shopping E-Store</h1>
+    <div class="cart">
+
+        <ul class="cartWrap">
+            <li class="items odd" th:each="item : ${items}">
+                <form method="post" action="/add">
+                    <div class="infoWrap">
+                        <div class="cartSection">
+                            <input type="hidden" name="item" th:value="${item.productid}">
+                            <h3 th:text="${item.productname}"></h3>
+                            <p class="stockStatus"> In Stock</p>
+                        </div>
+                        <div class="prodTotal cartSection">
+                            <P>₱ </P><p th:text="${item.productprice}"></p>
+                        </div>
+                        <div class="cartSection removeWrap">
+                            <button type="submit" class="remove" style="float: right;"> Add Item </button>
+                        </div>
+                    </div>
+                </form>
+            </li>
+        </ul>
+
+    </div>
+
+
+
+
+</div>
+<div class="wrap cf">
+    <h1 class="projTitle">YOUR CART:</h1>
+
+    <div class="cart">
+
+        <ul class="cartWrap">
+            <li class="items odd" th:each="selected : ${selected}">
+                <form method="post" action="/cancel">
+                    <div class="infoWrap">
+                        <div class="cartSection">
+                            <input type="hidden" name="cancelitem" th:value="${selected.productid}">
+                            <h3 th:text="${selected.productname}"></h3>
+                            <p class="stockStatus"> In Stock</p>
+                        </div>
+                        <div class="prodTotal cartSection">
+                            <P>₱ </P><p th:text="${selected.productprice}"></p>
+                        </div>
+                        <div class="cartSection removeWrap">
+                            <button type="submit" class="remove" style="float: right;"> Cancel Item </button>
+                        </div>
+                    </div>
+                </form>
+            </li>
+        </ul>
+
+    </div>
+</div>
+
+<div class="subtotal cf">
+    <ul>
+
+        <li class="totalRow final"><span class="label">Total</span><span class="value" th:text="${total}"></span></li>
+        <form method="post" action="/checkout">
+            <li class="totalRow"> <button class="btn continue"> Check Out</button>
+
+        </form>
+
+    </ul>
+</div>
+<form method="post" action="/signout">
+    <button type="submit">Sign Out</button>
+</form>
+
+
+</body>
+</html>

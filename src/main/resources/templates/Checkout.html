@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="checkout.css">
+    <script src="checkout.js"></script>
+</head>
+<body>
+
+<div class="container">
+    <div class="tab"></div>
+    <div class="paid"><p>Receipt Paid successfully</p></div>
+    <div class="receipt">
+        <div class="paper">
+            <div class="title">Receipt</div>
+            <div class="date">Date: 20/07/2013</div>
+                <table>
+                    <tbody>
+                    <tr th:each="selected : ${selected}">
+                        <td th:text="${selected.productname}">
+                        </td>
+                        <td class="right" th:text="${selected.productprice}"><p>₱</p>
+                        </td>
+                    </tr>
+                    <tr><td th:text="${total}"></td></tr>
+                    <tr><td colspan="2" class="center"><input type="button" value="Pay Now" onClick="pay()"/></td></tr>
+                    </tbody>
+                </table>
+            <div class="sign center">
+                <div class="barcode"></div>
+                <br/>
+                0123456789
+                <br/>
+                <div class="thankyou">
+                    Thank you for your business
+                </div>
+            </div>
+        </div>
+
+            <div>
+        </div>
+
+    </div>
+</div>
+
+        <form action="/signout" method="post">
+            <button type="submit">Sign Out</button>
+        </form>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,268 @@
+body{
+    margin:0;
+    color:#6a6f8c;
+    background:#c8c8c8;
+    font:600 16px/18px 'Open Sans',sans-serif;
+}
+*,:after,:before{box-sizing:border-box}
+.clearfix:after,.clearfix:before{content:'';display:table}
+.clearfix:after{clear:both;display:block}
+a{color:inherit;text-decoration:none}
+
+.login-wrap{
+    width:100%;
+    margin:auto;
+    max-width:525px;
+    min-height:670px;
+    position:relative;
+    background:url(https://raw.githubusercontent.com/khadkamhn/day-01-login-form/master/img/bg.jpg) no-repeat center;
+    box-shadow:0 12px 15px 0 rgba(0,0,0,.24),0 17px 50px 0 rgba(0,0,0,.19);
+}
+.login-html{
+    width:100%;
+    height:100%;
+    position:absolute;
+    padding:90px 70px 50px 70px;
+    background:rgba(40,57,101,.9);
+}
+.login-html .sign-in-htm,
+.login-html .sign-up-htm{
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    position:absolute;
+    transform:rotateY(180deg);
+    backface-visibility:hidden;
+    transition:all .4s linear;
+}
+.login-html .sign-in,
+.login-html .sign-up,
+.login-form .group .check{
+    display:none;
+}
+.login-html .tab,
+.login-form .group .label,
+.login-form .group .button{
+    text-transform:uppercase;
+}
+.login-html .tab{
+    font-size:22px;
+    margin-right:15px;
+    padding-bottom:5px;
+    margin:0 15px 10px 0;
+    display:inline-block;
+    border-bottom:2px solid transparent;
+}
+.login-html .sign-in:checked + .tab,
+.login-html .sign-up:checked + .tab{
+    color:#fff;
+    border-color:#1161ee;
+}
+.login-form{
+    min-height:345px;
+    position:relative;
+    perspective:1000px;
+    transform-style:preserve-3d;
+}
+.login-form .group{
+    margin-bottom:15px;
+}
+.login-form .group .label,
+.login-form .group .input,
+.login-form .group .button{
+    width:100%;
+    color:#fff;
+    display:block;
+}
+.login-form .group .input,
+.login-form .group .button{
+    border:none;
+    padding:15px 20px;
+    border-radius:25px;
+    background:rgba(255,255,255,.1);
+}
+.login-form .group input[data-type="password"]{
+    text-security:circle;
+    -webkit-text-security:circle;
+}
+.login-form .group .label{
+    color:#aaa;
+    font-size:12px;
+}
+.login-form .group .button{
+    background:#1161ee;
+}
+.login-form .group label .icon{
+    width:15px;
+    height:15px;
+    border-radius:2px;
+    position:relative;
+    display:inline-block;
+    background:rgba(255,255,255,.1);
+}
+.login-form .group label .icon:before,
+.login-form .group label .icon:after{
+    content:'';
+    width:10px;
+    height:2px;
+    background:#fff;
+    position:absolute;
+    transition:all .2s ease-in-out 0s;
+}
+.login-form .group label .icon:before{
+    left:3px;
+    width:5px;
+    bottom:6px;
+    transform:scale(0) rotate(0);
+}
+.login-form .group label .icon:after{
+    top:6px;
+    right:0;
+    transform:scale(0) rotate(0);
+}
+.login-form .group .check:checked + label{
+    color:#fff;
+}
+.login-form .group .check:checked + label .icon{
+    background:#1161ee;
+}
+.login-form .group .check:checked + label .icon:before{
+    transform:scale(1) rotate(45deg);
+}
+.login-form .group .check:checked + label .icon:after{
+    transform:scale(1) rotate(-45deg);
+}
+.login-html .sign-in:checked + .tab + .sign-up + .tab + .login-form .sign-in-htm{
+    transform:rotate(0);
+}
+.login-html .sign-up:checked + .tab + .login-form .sign-up-htm{
+    transform:rotate(0);
+}
+
+h1{
+    font-size: 30px;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 300;
+    text-align: center;
+    margin-bottom: 15px;
+}
+table{
+    width:100%;
+    table-layout: fixed;
+}
+.tbl-header{
+    background-color: rgba(255,255,255,0.3);
+}
+.tbl-content{
+    height:300px;
+    overflow-x:auto;
+    margin-top: 0px;
+    border: 1px solid rgba(255,255,255,0.3);
+}
+th{
+    padding: 20px 15px;
+    text-align: left;
+    font-weight: 500;
+    font-size: 12px;
+    color: #fff;
+    text-transform: uppercase;
+}
+td{
+    padding: 15px;
+    text-align: left;
+    vertical-align:middle;
+    font-weight: 300;
+    font-size: 12px;
+    color: #fff;
+    border-bottom: solid 1px rgba(255,255,255,0.1);
+}
+
+
+/* demo styles */
+
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
+body{
+    background: -webkit-linear-gradient(left, #25c481, #25b7c4);
+    background: linear-gradient(to right, #25c481, #25b7c4);
+    font-family: 'Roboto', sans-serif;
+}
+section{
+    margin: 50px;
+}
+
+
+/* follow me template */
+.made-with-love {
+    margin-top: 40px;
+    padding: 10px;
+    clear: left;
+    text-align: center;
+    font-size: 10px;
+    font-family: arial;
+    color: #fff;
+}
+.made-with-love i {
+    font-style: normal;
+    color: #F50057;
+    font-size: 14px;
+    position: relative;
+    top: 2px;
+}
+.made-with-love a {
+    color: #fff;
+    text-decoration: none;
+}
+.made-with-love a:hover {
+    text-decoration: underline;
+}
+
+
+/* for custom scrollbar for webkit browser*/
+
+::-webkit-scrollbar {
+    width: 6px;
+}
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+::-webkit-scrollbar-thumb {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+
+body {
+    background: linear-gradient(135deg, rgba(85,239,203,1) 0%,rgba(30,87,153,1) 0%,rgba(85,239,203,1) 0%,rgba(91,202,255,1) 100%);
+    color: #f7f7f7;
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+}
+.containerMenu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    flex-wrap: wrap;
+    width: 60vw;
+    max-width: 1200px;
+    margin: 0 auto;
+    min-height: 100vh;
+}
+.buttonMenu {
+    flex: 1 1 auto;
+    margin: 10px;
+    padding: 20px;
+    border: 2px solid #f7f7f7;
+    text-align: center;
+    text-transform: uppercase;
+    position: relative;
+    overflow:hidden;
+    transition: .3s;
+
+
+
+
+}
+
+
+
