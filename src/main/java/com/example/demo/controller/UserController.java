@@ -32,6 +32,7 @@ public class UserController {
     @RequestMapping("/signup")
     public String showLoginPage(HttpSession session, Model model){
         if(session.isNew()) {
+            session.invalidate();
             return "SignupPage";
         }else{
             if(session.getAttribute("usertype").toString().equals("seller")) {
@@ -165,7 +166,7 @@ public class UserController {
     @RequestMapping("/signout")
     public String signOut(HttpSession session){
         session.invalidate();
-        productController.selectedItems=null;
+        productController.selectedItems.clear();
 
         return "LoginPage";
 

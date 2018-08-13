@@ -52,6 +52,50 @@ public class ProductController {
     ArrayList<Integer> prices = new ArrayList<Integer>();
 
     ArrayList<Product> selectedItems = new ArrayList<Product>();
+    @RequestMapping("/add")
+    public String addtItem(HttpServletRequest request, HttpSession session, Model model){
+        //ArrayList<Product> selectedItems = new ArrayList<Product>();
+        String item = request.getParameter("item");
+        System.out.println("haha" + item);
+
+        Product newprod = new Product();
+        newprod.setProductname(getProdDetails(item).getProductname());
+        newprod.setProductprice(getProdDetails(item).getProductprice());
+        newprod.setProductsellerid(getProdDetails(item).getProductsellerid());
+        newprod.setProductid(getProdDetails(item).getProductid());
+        selectedItems.add(newprod);
+        System.out.println(newprod.toString() +"eut");
+
+        model.addAttribute("selected", selectedItems);
+
+        ArrayList<Product> itemlist= productService.findAll();
+        model.addAttribute("items", itemlist);
+        int total = computeTotal(selectedItems);
+        model.addAttribute("total", total);
+        return "Shop";
+    }
+
+    @RequestMapping("/cancel")
+    public String cancel(Model model, HttpServletRequest request){
+
+        String cancelitem = request.getParameter("cancelitem");
+
+        int id = Integer.parseInt(cancelitem);
+        for (int i = 0; i < selectedItems.size(); i++) {
+            if(id == selectedItems.get(i).getProductid()){
+                selectedItems.remove(i);
+                break;
+            }
+        }
+
+
+        model.addAttribute("selected", selectedItems);
+        ArrayList<Product> itemlist= productService.findAll();
+        model.addAttribute("items", itemlist);
+        int total = computeTotal(selectedItems);
+        model.addAttribute("total", total);
+        return "Shop";
+    }
 
 
 
@@ -115,48 +159,7 @@ public class ProductController {
         return "Checkout";
     }
 
-    @RequestMapping("/add")
-    public String addtItem(HttpServletRequest request, HttpSession session, Model model){
-        String item = request.getParameter("item");
-        System.out.println("haha" + item);
 
-        Product newprod = new Product();
-        newprod.setProductname(getProdDetails(item).getProductname());
-        newprod.setProductprice(getProdDetails(item).getProductprice());
-        newprod.setProductsellerid(getProdDetails(item).getProductsellerid());
-        newprod.setProductid(getProdDetails(item).getProductid());
-        selectedItems.add(newprod);
-
-        model.addAttribute("selected", selectedItems);
-
-        ArrayList<Product> itemlist= productService.findAll();
-        model.addAttribute("items", itemlist);
-        int total = computeTotal(selectedItems);
-        model.addAttribute("total", total);
-        return "Shop";
-    }
-
-    @RequestMapping("/cancel")
-    public String cancel(Model model, HttpServletRequest request){
-
-        String cancelitem = request.getParameter("cancelitem");
-
-        int id = Integer.parseInt(cancelitem);
-        for (int i = 0; i < selectedItems.size(); i++) {
-            if(id == selectedItems.get(i).getProductid()){
-                    selectedItems.remove(i);
-                break;
-            }
-        }
-
-
-        model.addAttribute("selected", selectedItems);
-        ArrayList<Product> itemlist= productService.findAll();
-        model.addAttribute("items", itemlist);
-        int total = computeTotal(selectedItems);
-        model.addAttribute("total", total);
-        return "Shop";
-    }
 
 
 
